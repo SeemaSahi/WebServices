@@ -1,33 +1,26 @@
 package com.sagarandcompany.RestWebServicesDemo.controller;
 
 import com.sagarandcompany.RestWebServicesDemo.domain.Employee;
+import com.sagarandcompany.RestWebServicesDemo.service.EmployeeService;
 import com.sagarandcompany.RestWebServicesDemo.util.ResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emp")
 public class EmployeeController {
-    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @Autowired
+    EmployeeService employeeService;
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseDTO save(@RequestBody Employee employee) {
-        System.out.println(employee.toString());
-        ResponseDTO responseDTO = new ResponseDTO();
-        responseDTO.setStatus(true);
-        responseDTO.setMessage("Employee is saved succesfully");
-        return responseDTO;
+        return employeeService.save(employee);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public ResponseDTO get(@PathVariable Long id) {
-        Employee employee = new Employee();
-        employee.setId(id);
-        employee.setName("sagar");
-        employee.setSalary(123);
-        employee.setEmail("mnp@gmail.com");
-        ResponseDTO responseDTO = new ResponseDTO();
-        responseDTO.setData(employee);
-        responseDTO.setStatus(true);
-        return responseDTO;
+        return employeeService.get(id);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
