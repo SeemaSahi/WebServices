@@ -20,6 +20,7 @@ public class PersonController {
     @RequestMapping(value = "/save", method= RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE , produces = MediaType.APPLICATION_XML_VALUE)
     public Person save(@RequestBody Person person )
     {
+        System.out.println("TEsting some data");
         System.out.println(person.toString());
         return person;
     }
