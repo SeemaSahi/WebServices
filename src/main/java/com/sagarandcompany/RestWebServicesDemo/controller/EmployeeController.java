@@ -26,10 +26,7 @@ public class EmployeeController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseDTO delete(@PathVariable Long id) {
         System.out.println("deleted id" + id);
-        ResponseDTO responseDTO = new ResponseDTO();
-        responseDTO.setStatus(true);
-        responseDTO.setMessage("Record is deleted successfully");
-        return responseDTO;
+        return employeeService.delete(id);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -38,7 +35,7 @@ public class EmployeeController {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(true);
         responseDTO.setMessage("Employee is update succesfully");
-        return responseDTO;
+        return employeeService.update(employee);
     }
 
 }

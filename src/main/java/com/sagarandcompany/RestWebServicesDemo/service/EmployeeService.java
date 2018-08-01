@@ -25,4 +25,21 @@ public class EmployeeService {
         responseDTO.setData(employee);
         return responseDTO;
     }
+
+        public ResponseDTO delete(Long id) {
+            employeRepository.deleteById(id);
+            ResponseDTO responseDTO = new ResponseDTO();
+            responseDTO.setStatus(true);
+            responseDTO.setMessage("deleted record");
+            return responseDTO;
+
+        }
+    public ResponseDTO update(Employee employee) {
+        employeRepository.save(employee);
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setStatus(true);
+        responseDTO.setMessage("Employee is saved succesfully");
+        return responseDTO;
+    }
+
 }
