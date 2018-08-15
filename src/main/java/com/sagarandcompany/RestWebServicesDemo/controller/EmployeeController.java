@@ -13,13 +13,14 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDTO save(@RequestBody Employee employee) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Employee save(@RequestBody Employee employee) {
         return employeeService.save(employee);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public ResponseDTO get(@PathVariable Long id) {
+    public Employee get(@PathVariable Long id) {
         return employeeService.get(id);
     }
 

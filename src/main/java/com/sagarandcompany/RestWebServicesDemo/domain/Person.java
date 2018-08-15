@@ -1,5 +1,9 @@
 package com.sagarandcompany.RestWebServicesDemo.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -7,8 +11,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.NONE)
+@Entity
 public class Person {
     @XmlElement
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @XmlElement
     private String name;

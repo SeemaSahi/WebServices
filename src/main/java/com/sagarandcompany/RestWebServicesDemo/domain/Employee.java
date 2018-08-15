@@ -1,11 +1,11 @@
 package com.sagarandcompany.RestWebServicesDemo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Cacheable
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +13,33 @@ public class Employee {
     private String name;
     private String email;
     private Integer salary;
+    //optimistic locking
+    @Version
+    private Integer version;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Task> tasks = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Project> projects = new ArrayList<>();
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public Long getId() {
         return id;
