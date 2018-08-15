@@ -37,13 +37,13 @@ public class EmployeeService {
 
 
         criteriaQuery.where(criteriaBuilder.equal(root.get("name").as(String.class), "xyz"));
-*/
+
 
         Query query = entityManager.createQuery(criteriaQuery);
         Employee employee = (Employee) query.getSingleResult();
         System.out.println(employee.toString());
     }
-
+*/
     //    @Transactional
     public Employee get(Long id) {
 //        Employee employee1 = employeRepository.findById(id).get();
@@ -53,7 +53,7 @@ public class EmployeeService {
 //        Employee employee2 = employeRepository.getOne(id);
 //        Employee employee3 = employeRepository.getOne(id);
 
-        criteriaQueryDemo();
+       // criteriaQueryDemo();
 //        Employee employee1 = entityManager.find(Employee.class, id, LockModeType.PESSIMISTIC_READ);
 //        employee1.setEmail("xyz.com");
 //        entityManager.merge(employee1);
